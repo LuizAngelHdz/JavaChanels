@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Example</h1>
+</body>
+<script>
+    // You need to listen the "flutterInAppWebViewPlatformReady", otherwise it could not work properly!
+    // Another way is to make sure that the page has been loaded and the DOM is ready!
+    window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
+
+        // call Flutter JavaScript handler callback!
+        window.flutter_inappwebview.callHandler('handlerFoo').then(function (result) {
+            // use the "result" coming from Flutter side and call the other Flutter JavaScript handler callback and send arguments!
+            window.flutter_inappwebview.callHandler('handlerFooWithArgs', 1, true, ['bar', 5], { foo: 'baz' }, result).then(function (result) { });
+            console.log("-->", result)
+        });
+
+    });
+</script>
+
+</html>
